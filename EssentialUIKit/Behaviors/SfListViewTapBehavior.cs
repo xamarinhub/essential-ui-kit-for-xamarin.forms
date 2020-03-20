@@ -15,7 +15,7 @@ namespace EssentialUIKit.Behaviors
         /// Gets or sets the CommandProperty, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty CommandProperty =
-            BindableProperty.Create("Command", typeof(ICommand), typeof(SfListViewTapBehavior));
+            BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(SfListViewTapBehavior));
 
         /// <summary>
         /// Gets or sets the Command.
@@ -36,8 +36,11 @@ namespace EssentialUIKit.Behaviors
         /// <param name="bindableListView">The SfListView</param>
         protected override void OnAttachedTo(SfListView bindableListView)
         {
-            base.OnAttachedTo(bindableListView);
-            bindableListView.ItemTapped += this.BindableListView_ItemTapped;
+            if (bindableListView != null)
+            {
+                base.OnAttachedTo(bindableListView);
+                bindableListView.ItemTapped += this.BindableListView_ItemTapped;
+            }
         }
             
         /// <summary>
@@ -46,8 +49,11 @@ namespace EssentialUIKit.Behaviors
         /// <param name="bindableListView">The SfListView</param>
         protected override void OnDetachingFrom(SfListView bindableListView)
         {
-            base.OnDetachingFrom(bindableListView);
-            bindableListView.ItemTapped -= this.BindableListView_ItemTapped;
+            if (bindableListView != null)
+            {
+                base.OnDetachingFrom(bindableListView);
+                bindableListView.ItemTapped -= this.BindableListView_ItemTapped;
+            }
         }
 
         /// <summary>

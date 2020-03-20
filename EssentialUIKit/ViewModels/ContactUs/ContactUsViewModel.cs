@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using EssentialUIKit.Models.ContactUs;
@@ -14,7 +15,7 @@ namespace EssentialUIKit.ViewModels.ContactUs
     /// ViewModel for contact us page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class ContactUsViewModel : INotifyPropertyChanged
+    public class ContactUsViewModel : BaseViewModel
     {
         #region Fields
 
@@ -37,15 +38,6 @@ namespace EssentialUIKit.ViewModels.ContactUs
         }
 
         #endregion   
-
-        #region Event
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
 
         #region Commands
 
@@ -71,7 +63,7 @@ namespace EssentialUIKit.ViewModels.ContactUs
             set
             {
                 this.customMarkers = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -88,22 +80,13 @@ namespace EssentialUIKit.ViewModels.ContactUs
             set
             {
                 this.geoCoordinate = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
         #endregion
                      
         #region Methods
-
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         /// <summary>
         /// Invoked when the send button is clicked.
@@ -134,7 +117,7 @@ namespace EssentialUIKit.ViewModels.ContactUs
 
             foreach (var marker in this.CustomMarkers)
             {
-                this.GeoCoordinate = new Point(Convert.ToDouble(marker.Latitude), Convert.ToDouble(marker.Longitude));
+                this.GeoCoordinate = new Point(Convert.ToDouble(marker.Latitude, CultureInfo.CurrentCulture), Convert.ToDouble(marker.Longitude, CultureInfo.CurrentCulture));
             }
         }
 

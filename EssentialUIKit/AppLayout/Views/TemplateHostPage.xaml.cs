@@ -8,7 +8,6 @@ using Xamarin.Forms.Xaml;
 namespace EssentialUIKit.AppLayout.Views
 {
     [Preserve(AllMembers = true)]
-    [QueryProperty("QueryData", "data")]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TemplateHostPage
     {
@@ -30,18 +29,11 @@ namespace EssentialUIKit.AppLayout.Views
             TemplateHostView.HeightRequest = HostViewContainer.HeightRequest = Application.Current.MainPage.Height - 55;
             TemplateHostView.WidthRequest = HostViewContainer.WidthRequest = Application.Current.MainPage.Width;
 
-            Title.Text = selectedTemplate.Name;
-
-            this.LoadPage(selectedTemplate.PageName);
-        }
-
-        #endregion
-
-        #region Properties
-
-        public string QueryData
-        {
-            set => this.LoadPage(value);
+            if (selectedTemplate != null)
+            {
+                Title.Text = selectedTemplate.Name;
+                this.LoadPage(selectedTemplate.PageName);
+            }
         }
 
         #endregion

@@ -4,13 +4,13 @@ using Syncfusion.XForms.Buttons;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
-namespace EssentialUIKit.Behaviors.Detail
+namespace EssentialUIKit.Behaviors
 {
     /// <summary>
     /// This class extends the behavior of the SfSegmentedControl to invoke a command when an event occurs.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class SegmentedControlBehavior : Behavior<SfSegmentedControl>
+    public class SegmentedControlCommandBehavior : Behavior<SfSegmentedControl>
     {
         #region Properties
 
@@ -18,13 +18,19 @@ namespace EssentialUIKit.Behaviors.Detail
         /// Gets or sets the CommandProperty, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty CommandProperty =
-            BindableProperty.Create("Command", typeof(ICommand), typeof(SegmentedControlBehavior));
+            BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(SegmentedControlCommandBehavior));
 
         /// <summary>
         /// Gets or sets the CommandParameterProperty, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty CommandParameterProperty =
-            BindableProperty.Create("CommandParameter", typeof(object), typeof(SegmentedControlBehavior));
+            BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(SegmentedControlCommandBehavior));
+
+        /// <summary>
+        /// Gets or sets the ParentBindingContextProperty, and it is a bindable property.
+        /// </summary>
+        public static readonly BindableProperty ParentBindingContextProperty =
+            BindableProperty.Create(nameof(ParentBindingContext), typeof(object), typeof(SegmentedControlCommandBehavior));
 
         /// <summary>
         /// Gets or sets the Command.
@@ -45,6 +51,15 @@ namespace EssentialUIKit.Behaviors.Detail
         }
 
         /// <summary>
+        /// Gets or sets the ParentBindingContext.
+        /// </summary>
+        public object ParentBindingContext
+        {
+            get { return this.GetValue(ParentBindingContextProperty); }
+            set { this.SetValue(ParentBindingContextProperty, value); }
+        }
+
+        /// <summary>
         /// Gets the SegmentedControl.
         /// </summary>
         public SfSegmentedControl SegmentedControl { get; private set; }
@@ -59,10 +74,13 @@ namespace EssentialUIKit.Behaviors.Detail
         /// <param name="segmentedControl">Segmented Control</param>
         protected override void OnAttachedTo(SfSegmentedControl segmentedControl)
         {
-            base.OnAttachedTo(segmentedControl);
-            this.SegmentedControl = segmentedControl;
-            segmentedControl.BindingContextChanged += this.OnBindingContextChanged;
-            segmentedControl.SelectionChanged += this.OnSelectionChanged;
+            if (segmentedControl != null)
+            {
+                base.OnAttachedTo(segmentedControl);
+                this.SegmentedControl = segmentedControl;
+                segmentedControl.BindingContextChanged += this.OnBindingContextChanged;
+                segmentedControl.SelectionChanged += this.OnSelectionChanged;
+            }
         }
 
         /// <summary>
@@ -71,10 +89,13 @@ namespace EssentialUIKit.Behaviors.Detail
         /// <param name="segmentedControl">Segmented Control</param>
         protected override void OnDetachingFrom(SfSegmentedControl segmentedControl)
         {
-            base.OnDetachingFrom(segmentedControl);
-            segmentedControl.BindingContextChanged -= this.OnBindingContextChanged;
-            segmentedControl.SelectionChanged -= this.OnSelectionChanged;
-            this.SegmentedControl = null;
+            if (segmentedControl != null)
+            {
+                base.OnDetachingFrom(segmentedControl);
+                segmentedControl.BindingContextChanged -= this.OnBindingContextChanged;
+                segmentedControl.SelectionChanged -= this.OnSelectionChanged;
+                this.SegmentedControl = null;
+            }
         }
 
         /// <summary>
@@ -98,9 +119,9 @@ namespace EssentialUIKit.Behaviors.Detail
                 return;
             }
 
-            if (this.Command.CanExecute(e))
+            if (this.Command.CanExecute(CommandParameter))
             {
-                this.Command.Execute(e);
+                this.Command.Execute(CommandParameter);
             }
         }
 

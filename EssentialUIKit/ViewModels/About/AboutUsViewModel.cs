@@ -11,7 +11,7 @@ namespace EssentialUIKit.ViewModels.About
     /// ViewModel of AboutUs templates.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class AboutUsViewModel : INotifyPropertyChanged
+    public class AboutUsViewModel : BaseViewModel
     {
         #region Fields
 
@@ -75,20 +75,29 @@ namespace EssentialUIKit.ViewModels.About
                     EmployeeName = "Anthony",
                     Image = App.BaseImageUrl + "ProfileImage1.png",
                     Designation = "Senior Developer"
+                },
+                new AboutUsModel
+                {
+                    EmployeeName = "Danielle",
+                    Image = App.BaseImageUrl + "ProfileImage7.png",
+                    Designation = "Senior Developer"
+                },
+                 new AboutUsModel
+                {
+                    EmployeeName = "Kyle Greene",
+                    Image = App.BaseImageUrl + "ProfileImage6.png",
+                    Designation = "Senior Developer"
+                },
+                  new AboutUsModel
+                {
+                    EmployeeName = "Navya Sharma",
+                    Image = App.BaseImageUrl + "ProfileImage13.png",
+                    Designation = "Testing Engineer"
                 }
             };
             
             this.ItemSelectedCommand = new Command(this.ItemSelected);
         }
-
-        #endregion
-
-        #region Event handler
-
-        /// <summary>
-        /// Occurs when the property is changed.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
@@ -108,7 +117,7 @@ namespace EssentialUIKit.ViewModels.About
             set
             {
                 this.cardsTopImage = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -126,7 +135,7 @@ namespace EssentialUIKit.ViewModels.About
             set
             {
                 this.productDescription = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -144,7 +153,7 @@ namespace EssentialUIKit.ViewModels.About
             set
             {
                 this.productIcon = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -162,7 +171,7 @@ namespace EssentialUIKit.ViewModels.About
             set
             {
                 this.productVersion = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -180,15 +189,6 @@ namespace EssentialUIKit.ViewModels.About
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">The PropertyName</param>
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         /// <summary>
         /// Invoked when an item is selected.

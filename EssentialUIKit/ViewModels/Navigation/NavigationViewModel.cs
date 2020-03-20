@@ -48,7 +48,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// </summary>
         [DataMember(Name = "navigationList")]
         public ObservableCollection<NavigationModel> NavigationList { get; set; }
-
+        
         #endregion
 
         #region Methods

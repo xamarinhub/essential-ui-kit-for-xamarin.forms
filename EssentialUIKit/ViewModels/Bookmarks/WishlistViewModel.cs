@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
+using EssentialUIKit.Controls;
 using EssentialUIKit.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -13,7 +14,7 @@ namespace EssentialUIKit.ViewModels.Bookmarks
     /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]
-    public class WishlistViewModel : INotifyPropertyChanged
+    public class WishlistViewModel : BaseViewModel
     {
         #region Fields
         
@@ -39,14 +40,7 @@ namespace EssentialUIKit.ViewModels.Bookmarks
 
         private Command quantitySelectedCommand;
 
-        #endregion
-
-        #region Event
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        private Command backButtonCommand;
 
         #endregion
 
@@ -230,18 +224,20 @@ namespace EssentialUIKit.ViewModels.Bookmarks
             }
         }
 
+        /// <summary>
+        /// Gets or sets the command is executed when the back button is clicked.
+        /// </summary>
+        public Command BackButtonCommand
+        {
+            get
+            {
+                return this.backButtonCommand ?? (this.backButtonCommand = new Command(this.BackButtonClicked));
+            }
+        }
+
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        public void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         /// <summary>
         /// Invoked when cart button is clicked.
@@ -271,8 +267,24 @@ namespace EssentialUIKit.ViewModels.Bookmarks
             if (this.WishlistDetails.Count > 0)
             {
                 this.WishlistDetails.Remove(obj as Product);
+
+                if ( this.WishlistDetails.Count == 0 )
+                {
+                    SfPopupView sfPopupView = new SfPopupView();
+                    sfPopupView.ShowPopUp(content: "Your wishlist is empty!", buttonText: "START SHOPPING");
+                }
             }
         }
+
+        /// <summary>
+        /// Invoked when an back button is clicked.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private void BackButtonClicked(object obj)
+        {
+            // Do something
+        }
+
 
         /// <summary>
         /// Invoked when the quantity is selected.

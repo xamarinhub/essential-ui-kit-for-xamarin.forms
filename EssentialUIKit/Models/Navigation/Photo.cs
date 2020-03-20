@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Globalization;
 using System.Runtime.Serialization;
+using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.Models.Navigation
 {
     /// <summary>
     /// Photo model.
     /// </summary>
+    [Preserve(AllMembers = true)]
     [DataContract]
     public class Photo
     {
@@ -51,7 +54,7 @@ namespace EssentialUIKit.Models.Navigation
         {
             get
             {
-                var date = Convert.ToDateTime(this.Date);
+                var date = Convert.ToDateTime(this.Date, CultureInfo.CurrentCulture);
                 return DateTime.MinValue != date
                      ? date
                      : this.updatedDate;

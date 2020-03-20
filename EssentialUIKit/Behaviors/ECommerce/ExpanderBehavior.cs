@@ -18,13 +18,13 @@ namespace EssentialUIKit.Behaviors.ECommerce
         /// Gets or sets the CommandProperty, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty CommandProperty =
-            BindableProperty.Create("Command", typeof(ICommand), typeof(ExpanderBehavior));
+            BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(ExpanderBehavior));
 
         /// <summary>
         /// Gets or sets the CommandParameterProperty, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty CommandParameterProperty =
-            BindableProperty.Create("CommandParameter", typeof(object), typeof(ExpanderBehavior));
+            BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(ExpanderBehavior));
 
         /// <summary>
         /// Gets or sets the Command.
@@ -59,10 +59,13 @@ namespace EssentialUIKit.Behaviors.ECommerce
         /// <param name="expander">The SfExpander</param>
         protected override void OnAttachedTo(SfExpander expander)
         {
-            base.OnAttachedTo(expander);
-            this.Expander = expander;
-            expander.BindingContextChanged += this.OnBindingContextChanged;
-            expander.Expanding += this.OnExpanding;
+            if (expander != null)
+            {
+                base.OnAttachedTo(expander);
+                this.Expander = expander;
+                expander.BindingContextChanged += this.OnBindingContextChanged;
+                expander.Expanding += this.OnExpanding;
+            }
         }
 
         /// <summary>
@@ -71,10 +74,13 @@ namespace EssentialUIKit.Behaviors.ECommerce
         /// <param name="expander">The SfExpander</param>
         protected override void OnDetachingFrom(SfExpander expander)
         {
-            base.OnDetachingFrom(expander);
-            expander.BindingContextChanged -= this.OnBindingContextChanged;
-            expander.Expanding -= this.OnExpanding;
-            this.Expander = null;
+            if (expander != null)
+            {
+                base.OnDetachingFrom(expander);
+                expander.BindingContextChanged -= this.OnBindingContextChanged;
+                expander.Expanding -= this.OnExpanding;
+                this.Expander = null;
+            }
         }
 
         /// <summary>

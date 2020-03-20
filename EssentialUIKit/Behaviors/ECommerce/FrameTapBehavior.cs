@@ -21,7 +21,7 @@ namespace EssentialUIKit.Behaviors.ECommerce
         /// Gets or sets the CommandParameterProperty, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty CommandParameterProperty =
-            BindableProperty.Create("CommandParameter", typeof(object), typeof(FrameTapBehavior));        
+            BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(FrameTapBehavior));        
 
         /// <summary>
         /// Gets or sets the CommandParameter.
@@ -42,10 +42,13 @@ namespace EssentialUIKit.Behaviors.ECommerce
         /// <param name="bindableFrame">The Frame</param>
         protected override void OnAttachedTo(Frame bindableFrame)
         {
-            base.OnAttachedTo(bindableFrame);
-            this.tapGestureRecognizer = new TapGestureRecognizer();
-            this.tapGestureRecognizer.Tapped += this.TapGestureRecognizer_Tapped;
-            bindableFrame.GestureRecognizers.Add(this.tapGestureRecognizer);
+            if (bindableFrame != null)
+            {
+                base.OnAttachedTo(bindableFrame);
+                this.tapGestureRecognizer = new TapGestureRecognizer();
+                this.tapGestureRecognizer.Tapped += this.TapGestureRecognizer_Tapped;
+                bindableFrame.GestureRecognizers.Add(this.tapGestureRecognizer);
+            }
         }
 
         /// <summary>

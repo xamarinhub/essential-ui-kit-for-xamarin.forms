@@ -5,6 +5,7 @@ using EssentialUIKit.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using System.Runtime.Serialization;
+using EssentialUIKit.Controls;
 
 namespace EssentialUIKit.ViewModels.Bookmarks
 {
@@ -13,7 +14,7 @@ namespace EssentialUIKit.ViewModels.Bookmarks
     /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]
-    public class CartPageViewModel : INotifyPropertyChanged
+    public class CartPageViewModel : BaseViewModel
     {
         #region Fields
 
@@ -31,12 +32,6 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         
         private Command placeOrderCommand;
         
-        private Command notificationCommand;
-        
-        private Command addToCartCommand;
-        
-        private Command saveForLaterCommand;
-        
         private Command removeCommand;
         
         private Command quantitySelectedCommand;
@@ -45,14 +40,7 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         
         private Command applyCouponCommand;
 
-        #endregion
-
-        #region Event
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        private Command backButtonCommand;
 
         #endregion
 
@@ -184,30 +172,6 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         }
 
         /// <summary>
-        /// Gets or sets the command that will be executed when the Notification button is clicked.
-        /// </summary>
-        public Command NotificationCommand
-        {
-            get { return this.notificationCommand ?? (this.notificationCommand = new Command(this.NotificationClicked)); }
-        }
-
-        /// <summary>
-        /// Gets or sets the command that will be executed when the AddToCart button is clicked.
-        /// </summary>
-        public Command AddToCartCommand
-        {
-            get { return this.addToCartCommand ?? (this.addToCartCommand = new Command(this.AddToCartClicked)); }
-        }
-
-        /// <summary>
-        /// Gets or sets the command that will be executed when the Save for Later button is clicked.
-        /// </summary>
-        public Command SaveForLaterCommand
-        {
-            get { return this.saveForLaterCommand ?? (this.saveForLaterCommand = new Command(this.SaveForLaterClicked)); }
-        }
-
-        /// <summary>
         /// Gets or sets the command that will be executed when the Remove button is clicked.
         /// </summary>
         public Command RemoveCommand
@@ -239,18 +203,17 @@ namespace EssentialUIKit.ViewModels.Bookmarks
             get { return this.applyCouponCommand ?? (this.applyCouponCommand = new Command(this.ApplyCouponClicked)); }
         }
 
+        /// <summary>
+        /// Gets or sets the command is executed when the back button is clicked.
+        /// </summary>
+        public Command BackButtonCommand
+        {
+            get { return this.backButtonCommand ?? (this.backButtonCommand = new Command(this.BackButtonClicked)); }
+        }
+
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        public void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         /// <summary>
         /// Invoked when an item is selected.
@@ -265,39 +228,18 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         /// Invoked when an item is selected.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private void NotificationClicked(object obj)
-        {
-            // Do something
-        }
-
-        /// <summary>
-        /// Invoked when an item is selected.
-        /// </summary>
-        /// <param name="obj">The Object</param>
-        private void AddToCartClicked(object obj)
-        {
-            // Do something
-        }
-
-        /// <summary>
-        /// Invoked when an item is selected.
-        /// </summary>
-        /// <param name="obj">The Object</param>
-        private void SaveForLaterClicked(object obj)
-        {
-            // Do something
-        }
-
-        /// <summary>
-        /// Invoked when an item is selected.
-        /// </summary>
-        /// <param name="obj">The Object</param>
         private void RemoveClicked(object obj)
         {
             if (obj is Product product)
             {
                 this.CartDetails.Remove(product);
                 this.UpdatePrice();
+
+                if(this.CartDetails.Count == 0)
+                {
+                    SfPopupView sfPopupView = new SfPopupView();
+                    sfPopupView.ShowPopUp(content: "Your cart is empty!",buttonText:"CONTINUE SHOPPING");
+                }
             }
         }
 
@@ -330,6 +272,15 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         /// </summary>
         /// <param name="obj">The Object</param>
         private void ApplyCouponClicked(object obj)
+        {
+            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when an back button is clicked.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private void BackButtonClicked(object obj)
         {
             // Do something
         }

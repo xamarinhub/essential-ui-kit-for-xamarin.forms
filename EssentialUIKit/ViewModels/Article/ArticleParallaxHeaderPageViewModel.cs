@@ -16,7 +16,7 @@ namespace EssentialUIKit.ViewModels.Article
     /// ViewModel for Article parallax page 
     /// </summary> 
     [Preserve(AllMembers = true)]
-    public class ArticleParallaxHeaderPageViewModel : INotifyPropertyChanged
+    public class ArticleParallaxHeaderPageViewModel : BaseViewModel
     {
         #region Fields
 
@@ -111,7 +111,7 @@ namespace EssentialUIKit.ViewModels.Article
                     ImagePath = App.BaseImageUrl + "ArticleImage2.png",
                     Name = "Learning to Reset",
                     Author = "John Doe",
-                    Date = "Aug 2010",
+                    Date = "Aug 10",
                     AverageReadingTime = "5 mins read"
                 },
                 new Model
@@ -127,7 +127,7 @@ namespace EssentialUIKit.ViewModels.Article
                     ImagePath = App.BaseImageUrl + "ArticleImage4.png",
                     Name = "Guiding Your Flock to Success",
                     Author = "John Doe",
-                    Date = "May 2012",
+                    Date = "May 20",
                     AverageReadingTime = "5 mins read"
                 },
                 new Model
@@ -143,7 +143,7 @@ namespace EssentialUIKit.ViewModels.Article
                     ImagePath = App.BaseImageUrl + "ArticleImage6.png",
                     Name = "Holistic Approach to UI Design",
                     Author = "John Doe",
-                    Date = "Dec 2013",
+                    Date = "Dec 13",
                     AverageReadingTime = "5 mins read"
                 }
             };
@@ -186,15 +186,6 @@ namespace EssentialUIKit.ViewModels.Article
 
         #endregion
 
-        #region Event
-
-        /// <summary>
-        /// The declaration of property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
         #region Public properties
 
         /// <summary>
@@ -212,7 +203,7 @@ namespace EssentialUIKit.ViewModels.Article
                 if ( this.articleName != value )
                 {
                     this.articleName = value;
-                    this.NotifyPropertyChanged("ArticleName");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -232,7 +223,7 @@ namespace EssentialUIKit.ViewModels.Article
                 if ( this.articleImage != value )
                 {
                     this.articleImage = value;
-                    this.NotifyPropertyChanged("ArticleImage");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -252,7 +243,7 @@ namespace EssentialUIKit.ViewModels.Article
                 if ( this.articleParallaxHeaderImage != value )
                 {
                     this.articleParallaxHeaderImage = value;
-                    this.NotifyPropertyChanged("ArticleParallaxHeaderImage");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -272,7 +263,7 @@ namespace EssentialUIKit.ViewModels.Article
                 if ( this.articleSubImage != value )
                 {
                     this.articleSubImage = value;
-                    this.NotifyPropertyChanged("ArticleSubImage");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -292,7 +283,7 @@ namespace EssentialUIKit.ViewModels.Article
                 if ( this.articleAuthor != value )
                 {
                     this.articleAuthor = value;
-                    this.NotifyPropertyChanged("ArticleAuthor");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -312,7 +303,7 @@ namespace EssentialUIKit.ViewModels.Article
                 if ( this.articleReadingTime != value )
                 {
                     this.articleReadingTime = value;
-                    this.NotifyPropertyChanged("ArticleReadingTime");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -332,7 +323,7 @@ namespace EssentialUIKit.ViewModels.Article
                 if ( this.articleDate != value )
                 {
                     this.articleDate = value;
-                    this.NotifyPropertyChanged("ArticleDate");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -352,7 +343,7 @@ namespace EssentialUIKit.ViewModels.Article
                 if ( this.articleContent != value )
                 {
                     this.articleContent = value;
-                    this.NotifyPropertyChanged("ArticleContent");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -375,7 +366,7 @@ namespace EssentialUIKit.ViewModels.Article
                 }
 
                 this.relatedStories = value;
-                this.NotifyPropertyChanged("LatestStories");
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -397,7 +388,7 @@ namespace EssentialUIKit.ViewModels.Article
                 }
 
                 this.contentList = value;
-                this.NotifyPropertyChanged("ContentList");
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -419,7 +410,7 @@ namespace EssentialUIKit.ViewModels.Article
                 }
 
                 this.reviews = value;
-                this.NotifyPropertyChanged("Reviews");
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -441,7 +432,7 @@ namespace EssentialUIKit.ViewModels.Article
                 }
 
                 this.subTitle1 = value;
-                this.NotifyPropertyChanged("SubTitle1");
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -463,7 +454,7 @@ namespace EssentialUIKit.ViewModels.Article
                 }
 
                 this.subTitle2 = value;
-                this.NotifyPropertyChanged("SubTitle2");
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -567,15 +558,6 @@ namespace EssentialUIKit.ViewModels.Article
         private void LoadMoreClicked (object obj)
         {
            // Do something
-        }
-
-        /// <summary>
-        /// The PropertyChanged event fired when change the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        private void NotifyPropertyChanged (string propertyName)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion

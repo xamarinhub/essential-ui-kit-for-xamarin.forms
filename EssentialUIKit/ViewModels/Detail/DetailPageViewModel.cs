@@ -14,7 +14,7 @@ namespace EssentialUIKit.ViewModels.Detail
     /// ViewModel for detail page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class DetailPageViewModel : INotifyPropertyChanged
+    public class DetailPageViewModel : BaseViewModel
     {
         #region Fields
 
@@ -168,23 +168,14 @@ namespace EssentialUIKit.ViewModels.Detail
             };
 
             this.AddFavouriteCommand = new Command(this.AddFavouriteClicked);
-            this.NotificationCommand = new Command(this.NotificationClicked);
             this.AddToCartCommand = new Command(this.AddToCartClicked);
             this.ShareCommand = new Command(this.ShareClicked);
             this.VariantCommand = new Command(this.VariantClicked);
             this.ItemSelectedCommand = new Command(this.ItemSelected);
             this.CardItemCommand = new Command(this.CartClicked);
             this.LoadMoreCommand = new Command(this.LoadMoreClicked);
+            this.BackButtonCommand = new Command(BackButtonClicked);
         }
-
-        #endregion
-
-        #region Event
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
@@ -297,11 +288,6 @@ namespace EssentialUIKit.ViewModels.Detail
         public Command AddFavouriteCommand { get; set; }
 
         /// <summary>
-        /// Gets or sets the command that will be executed when the Notification button is clicked.
-        /// </summary>
-        public Command NotificationCommand { get; set; }
-
-        /// <summary>
         /// Gets or sets the command that will be executed when the AddToCart button is clicked.
         /// </summary>
         public Command AddToCartCommand { get; set; }
@@ -331,18 +317,14 @@ namespace EssentialUIKit.ViewModels.Detail
         /// </summary>
         public Command LoadMoreCommand { get; set; }
 
+        /// <summary>
+        /// Gets or sets the command is executed when the back button is clicked.
+        /// </summary>
+        public Command BackButtonCommand { get; set; }
+
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        public void NotifyPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         /// <summary>
         /// Invoked when the Favourite button is clicked.
@@ -354,15 +336,6 @@ namespace EssentialUIKit.ViewModels.Detail
             {
                 model.ProductDetail.IsFavourite = !model.ProductDetail.IsFavourite;
             }
-        }
-
-        /// <summary>
-        /// Invoked when the Notification button is clicked.
-        /// </summary>
-        /// <param name="obj">The Object</param>
-        private void NotificationClicked(object obj)
-        {
-            // Do something
         }
 
         /// <summary>
@@ -417,6 +390,15 @@ namespace EssentialUIKit.ViewModels.Detail
         /// </summary>
         /// <param name="obj">The Object</param>
         private void LoadMoreClicked (object obj)
+        {
+            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when an back button is clicked.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private void BackButtonClicked(object obj)
         {
             // Do something
         }

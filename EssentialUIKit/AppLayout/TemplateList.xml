@@ -14,7 +14,8 @@
     <Page Name="Tabbed Login Page" Description="This page is a multi-tabbed user interface where one tab provides a login page and another tab provides a sign-up form." PageName="Views.Forms.TabbedForm"/>
     <Page Name="Add Card Page" Description="This page allows users to enter their credit card information to be used in an online payment portal." PageName="Views.Forms.AddCardPage"/>
     <Page Name="Add Profile Page" Description="This page allows users to add a new entry to their contacts with additional information such as name and phone number." PageName="Views.Forms.AddProfilePage"/>
-</Category>
+    <Page Name="Business Registration Form Page"  Description="This page allows users to add business details such as name, email address, and phone number." PageName="Views.Forms.BusinessRegistrationFormPage"/>
+  </Category>
 
   <Category Icon="catalog.png" Name="Catalog" Description="Let the users select from the list of items that includes titles, brief descriptions, and photos.">
     <Page Name="Category Tile Page" Description="Displaying an image with a title is a scenario in most applications, and this page categorizes product images and provides a title for the category." PageName="Views.Catalog.CategoryTilePage"/>
@@ -36,9 +37,9 @@
     <Page Name="Chat Conversation Page" Description="This page displays a recent conversation with a contact in a chat application. The page provides options to send files, images, or any other attachments as well as text messages." PageName="Views.Chat.ChatMessagePage" />
   </Category>
   
-   <Category Icon="article.png" IsUpdated="True" Name="Article" Description="Organize blog posts in an easy-to-navigate layout.">
+   <Category Icon="article.png" Name="Article" Description="Organize blog posts in an easy-to-navigate layout.">
     <Page Name="Article Detail with Comments Page" Description="This page displays an article with the title, image, and text." PageName="Views.Article.ArticleWithCommentsPage" />
-     <Page Name="Article Parallax Header Page" IsNew="True" Description="This page displays an article with a pleasant parallax effect." PageName="Views.Article.ArticleParallaxHeaderPage" />
+     <Page Name="Article Parallax Header Page" Description="This page displays an article with a pleasant parallax effect." PageName="Views.Article.ArticleParallaxHeaderPage" />
      <Page Name="My Article Page" Description="This page displays an article with the title, image, and text with customized layout." PageName="Views.Article.MyArticlePage" />
    </Category>
 
@@ -57,14 +58,26 @@
     <Page Name="About Us Page with Scrolling" Description="This page displays organization information with scrolling effects." PageName="Views.AboutUs.AboutUsWithScrollPage" />
   </Category>
   
-  <Category Icon="navigation.png" Name="Navigation" Description="Enable your users to navigate between pages or items at a high level.">
+  <Category Icon="navigation.png" Name="Navigation" IsUpdated="True" Description="Enable your users to navigate between pages or items at a high level.">
     <Page Name="Bottom Navigation Page" Description="This page displays a navigation interface with icons and labels at the bottom." PageName="Views.Navigation.BottomNavigationPage"/>
-    <Page Name="Navigation List Card Page" Description="This page displays an item as a card in a list. Each card carries an image of the item, its description, and an overall rating. " PageName="Views.Navigation.NavigationListCardPage"/>
-    <Page Name="Navigation Tile Card Page" Description="This page displays an item as a card in a tile layout. Each tile contains an image of the item, its description, and an overall rating." PageName="Views.Navigation.NavigationTileCardPage"/>
+    <Page Name="Navigation List Card Page" Description="This page displays items in a list. Each card carries an image, description, and the overall rating of an item. " PageName="Views.Navigation.NavigationListCardPage"/>
+    <Page Name="Navigation Tile Card Page" Description="This page displays items in a tile layout. Each tile contains an image, description, and the overall rating of an item." PageName="Views.Navigation.NavigationTileCardPage"/>
+    <Page Name="Songs Page"  Description="This page displays items in a tile layout. Each tile contains an image, the name of a song, and its composer." PageName="Views.Navigation.SongsPage"/>
+    <Page Name="FAQs Page" IsNew="True" Description="This page displays items in an expander layout. Each item contains a question and answer for a  FAQ section." PageName="Views.Navigation.FAQPage"/>
+    <Page Name="Contacts List" IsNew="True" Description="This page displays a list of contacts and avatars." PageName="Views.Navigation.ContactsPage"/>
+    <Page Name="Songs Play List" IsNew="True" Description="This page displays items in a tile layout. Each tile contains the name of a song and its composer, and a menu icon." PageName="Views.Navigation.SongsPlayListPage"/>
+    <Page Name="Movies List" IsNew="True" Description="This page displays items in a tile layout. Each tile contains the name, year of release, and ratings of a movie." PageName="Views.Navigation.MoviesListPage"/>
+    <Page Name="Names List" IsNew="True" Description="This page displays group names as a list." PageName="Views.Navigation.NamesListPage"/>
+    <Page Name="Restaurant Page" IsNew="True" Description="This page displays Restaurant lists, items description, Offers and an overall rating." PageName="Views.Navigation.RestaurantPage"/>
+    <Page Name="Icon Names List " IsNew="True" Description="The icon names list page displays contact lists with icons and a Next option." PageName="Views.Navigation.IconNamesListPage"/>
+    <Page Name="Suggestion Page" IsNew="True" Description="A suggestion page shows profile names, profile IDs, and an option to let viewers follow accounts." PageName="Views.Navigation.SuggestionPage"/>
+    <Page Name="App Usage Page" IsNew="True" Description="This page shows the usage of apps, displaying the app names, progress bars, and progress bar values." PageName="Views.Navigation.AppUsagePage"/>
+    <Page Name="Documents List Page" IsNew="True" Description="This page shows a list of documents, displaying the name of the document, the size of the document, and the time it was last updated." PageName="Views.Navigation.DocumentsListPage"/>
+    <Page Name="Selectable Name Page " IsNew="True" Description="This page shows a selectable list of names with grouping." PageName="Views.Navigation.SelectableNamePage"/>
   </Category>
 
   <Category Icon="on-boarding.png" Name="Onboarding" Description="Get your users started with a new app or experience with step-by--step instructions.">
-    <Page Name="Walkthrough Page" Description="Guide users through a setup process on color gradient pages" PageName="Views.OnBoarding.OnBoardingAnimationPage"/>    
+    <Page Name="Walk-through Page" Description="Guide users through a setup process on color gradient pages" PageName="Views.OnBoarding.OnBoardingAnimationPage"/>    
   </Category>
 
   <Category Icon="error-empty.png" Name="Error and Empty" Description="Alert users to errors, empty shopping carts, task lists, item selections, and more.">
@@ -113,8 +126,33 @@
     <Page Name="Master Page" Description="This page displays an interactive burger menu of article pages. If you are working with a master-details page for articles, this page will be the master page for navigating across the application." PageName="Views.Profile.MasterPage"/>
   </Category>
 
-  <Category Icon="navigation.png" Name="Tracking" Description="Displays various trackings like train status, product delivery status, and more.">
+  <Category Icon="tracking.png" Name="Tracking" Description="Displays various trackings like train status, product delivery status, and more.">
     <Page Name="Prodcut Delivery Tracking Page" Description="This page displays a live train’s present status with the estimated time of arrival at a specified destination." PageName="Views.Tracking.ProductDeliveryTrackingPage"/>
   </Category>
+
+  <Category Icon="dashboard.png" Name="Dashboard" Description="A beautifully presented interface relevant to common real-world use cases.">
+    <Page Name="Stock Overview Page" Description="This page displays a dashboard for stock market data visualization." PageName="Views.Dashboard.StockOverviewPage"/>
+    <Page Name="Health Care Page"  Description="This page displays a dashboard for health-care data visualization." PageName="Views.Dashboard.HealthCarePage"/>
+  </Category>
+
+  <Category Icon="setting.png" Name="Settings" Description="Display various types of settings pages.">
+    <Page Name="Setting Page" Description="This page displays a simple settings page that includes account, notification, and support settings." PageName="Views.Settings.SettingPage"/>
+    <Page Name="Help Page"  Description="This page displays a simple help page that provides help with recent orders and other queries." PageName="Views.Settings.HelpPage"/>
+  </Category>
+
+  <Category Icon="notification.png" Name="Notification" IsUpdated="True" Description="Display various types of notification pages.">
+    <Page Name="Task Notification Page" IsNew="True" Description="This page displays notifications for tasks, showing descriptions, task IDs, and times." PageName="Views.Notification.TaskNotificationPage"/>
+    <Page Name="Social Notification Page" IsNew="True" Description="This page displays social media notifications, containing a list of recent notifications and a list of earlier ones." PageName="Views.Notification.SocialNotificationPage"/>
+  </Category>
+   
+  <!--<Category Name="Shopping" Description="Simple shopping flow, fetturing catalog detail, cart detail and product checkout.">
+    <Page Name="Login Page" Description="If you want a simple and clean authentication form, then just add this page to your application. Email validation is done within this form." PageName="Views.Shopping.LoginPage"/>
+    <Page Name="Shopping Home Page" Description="Simple shopping flow, fetturing catalog detail, cart detail and product checkout" PageName="Views.Shopping.CatalogListPage"/>
+    <Page Name="Detail Page" Description="View detailed information regarding your orders" PageName="Views.Shopping.DetailPage" />
+    <Page Name="Shopping Cart Page" Description="View items in your cart for purchase. " PageName="Views.Shopping.CartPage" />
+    <Page Name="Checkout page" Description="Purchase items in your cart" PageName="Views.Shopping.CheckoutPage"/>
+    <Page Name="Payment success page" Description="This page notifies the user that their payment was successful." PageName="Views.Shopping.PaymentSuccessPage"/>
+    <Page Name="Walkthrough animation Page" Description="Guide users through a setup process on color gradient pages" PageName="Views.Shopping.OnBoardingAnimationPage"/>
+  </Category>-->
 
 </Samples>

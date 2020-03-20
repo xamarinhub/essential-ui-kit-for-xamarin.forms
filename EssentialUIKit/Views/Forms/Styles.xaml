@@ -13,6 +13,7 @@
     <Color x:Key="BorderBackgroundColor">#20FFFFFF</Color>
     <Color x:Key="GradientStartColor">#012E8B</Color>
     <Color x:Key="GradientEndColor">#3F0041</Color>
+    <Color x:Key="FacebookBlue">#4267B2</Color>
     
     <x:String x:Key="DropDownButtonIcon">&#xe70b;</x:String>
     <x:String x:Key="AvatarIcon">&#xe723;</x:String>
@@ -116,6 +117,13 @@
         <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}"/>
     </Style>
 
+    <Style x:Key="BusinessFormBorderStyle" TargetType="border:SfBorder">
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-300}"/>
+        <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}"/>
+    </Style>
+
     <Style x:Key="EntryTextStyle" TargetType="control:BorderlessEntry">
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}"/>
         <Setter Property="FontSize" Value="16"/>
@@ -135,6 +143,17 @@
         <Setter Property="TextColor" Value="{DynamicResource Gray-700}"/>
         <Setter Property="ShowBorder" Value="False"/>
         <Setter Property="WatermarkColor" Value="{DynamicResource Gray-700}"/>
+        <Setter Property="Margin" Value="8,3,0,-3"/>
+        <Setter Property="HeightRequest" Value="40"/>
     </Style>
-    
+
+    <Style x:Key="EntryTextBoxStyle" TargetType="control:BorderlessEntry">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
+        <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-700}"/>
+        <Setter Property="Margin" Value="12,0"/>
+        <Setter Property="HeightRequest" Value="40"/>
+    </Style>
+
 </ResourceDictionary>
